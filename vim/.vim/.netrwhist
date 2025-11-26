@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =7
-let g:netrw_dirhist_7='/Users/harmonicmean/Documents/Learn-Vim'
-let g:netrw_dirhist_6='/Users/harmonicmean/.vim'
-let g:netrw_dirhist_5='/Users/harmonicmean/.vim/plugin'
-let g:netrw_dirhist_4='/Users/harmonicmean/.vim/autoload'
-let g:netrw_dirhist_3='/Users/harmonicmean/Applications'
-let g:netrw_dirhist_2='/Users/harmonicmean/Library/Application Support/com.mitchellh.ghostty'
-let g:netrw_dirhist_1='/Users/harmonicmean/.vim/plugin'

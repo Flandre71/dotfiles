@@ -1,8 +1,15 @@
 # MacOS
 *.DS_Store
 
+# -------------
+# Vim Relateded
+# -------------
+
 # Vim-Plug
 vim/.vim/plugged/
+
+# Netrw history file
+.vim/.netrwhist
 
 # Swap
 [._]*.s[a-v][a-z]
