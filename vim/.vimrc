@@ -33,6 +33,7 @@ Plug 'jiangmiao/auto-pairs' "autp pairing
 Plug 'github/copilot.vim' "AI support
 Plug 'tpope/vim-commentary' "comment stuff
 Plug 'wellle/targets.vim' "add more text objects
+Plug 'preservim/vim-markdown' "richer markdown support
 call plug#end()
 
 syntax enable
