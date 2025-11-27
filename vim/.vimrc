@@ -4,8 +4,6 @@ set clipboard=unnamed
 set encoding=utf-8
 set number
 set relativenumber
-filetype on             " enable filetype detection
-filetype plugin on      " load file-specific plugins
 
 " Sane backspace behavior
 set backspace=indent,eol,start
@@ -24,20 +22,24 @@ set wildoptions=pum
 "Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'SirVer/ultisnips' "for snippeting (currently latex only)
-Plug 'lervag/vimtex', { 'for': 'tex' }" for latex support
-Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (currently not using)
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy find
 Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim' "vifm support for file management
 Plug 'jiangmiao/auto-pairs' "autp pairing
 Plug 'github/copilot.vim' "AI support
-Plug 'tpope/vim-commentary' "comment stuff
+Plug 'tpope/vim-commentary' "comment codes
 Plug 'wellle/targets.vim' "add more text objects
+Plug 'tpope/vim-surround' "text-surrounding support
+" for Markdown
 Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
+" for LaTeX
+Plug 'lervag/vimtex', { 'for': 'tex' }" for latex support
+Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (currently not using)
 call plug#end()
 
 syntax enable
-filetype indent on      " load file-specific indentation
+filetype on             " enable filetype detection
+filetype plugin indent on      " load file-specific plugins & indentation
 
 " leader key setting
 let mapleader=" "
