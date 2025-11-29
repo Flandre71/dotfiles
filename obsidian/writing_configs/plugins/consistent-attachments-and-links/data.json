@@ -1,0 +1,19 @@
+{
+  "consistencyReportFile": "consistency-report.md",
+  "emptyAttachmentFolderBehavior": "DeleteWithEmptyParents",
+  "excludePaths": [
+    "/consistency-report\\.md$/"
+  ],
+  "excludePathsFromAttachmentCollecting": [],
+  "includePaths": [],
+  "shouldChangeNoteBacklinksDisplayText": true,
+  "shouldCollectAttachmentsAutomatically": true,
+  "shouldDeleteAttachmentsWithNote": true,
+  "shouldDeleteExistingFilesWhenMovingNote": true,
+  "shouldMoveAttachmentsWithNote": true,
+  "shouldShowBackupWarning": false,
+  "shouldUpdateLinks": true,
+  "treatAsAttachmentExtensions": [
+    ".assets"
+  ]
+}
