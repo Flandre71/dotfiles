@@ -1,0 +1,9 @@
+" Note: \<C-g>u is used to break undo level.
+" To make coc.nvim format your code on <C-CR>:
+inoremap <silent><expr> <C-CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" " Use coc#pum#info() if you need to confirm completion, only when there's selected complete item:
+" inoremap <silent><expr> <C-CR> coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <C-j> and <C-k> to navigate the completion list
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"

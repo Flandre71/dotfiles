@@ -30,12 +30,23 @@ Plug 'github/copilot.vim' "AI support
 Plug 'tpope/vim-commentary' "comment codes
 Plug 'wellle/targets.vim' "add more text objects
 Plug 'tpope/vim-surround' "text-surrounding support
-" for Markdown
+Plug 'vim-airline/vim-airline' "for status line
+Plug 'vim-airline/vim-airline-themes' "for airline themes
 Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
+"Plug 'skywind3000/vim-quickui' "for quick gui assisstance
+" Plug 'dense-analysis/ale' "for syntax checking (not sure how to use, archived currently)
+" Plug 'neoclide/coc.nvim', {'branch': 'release'} "custom popup menu with snippet support
+" for Markdown
 " for LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }" for latex support
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (currently not using)
 call plug#end()
+
+set cursorline
+" Change background color to a dark gray in terminals
+highlight CursorLine ctermbg=darkgray
+" Change current line number color to red
+highlight CursorLineNr ctermbg=darkgray ctermfg=blue
 
 syntax enable
 filetype on             " enable filetype detection
@@ -45,12 +56,14 @@ filetype plugin indent on      " load file-specific plugins & indentation
 let mapleader=" "
 " map <space> alone to no operation instead of moving forward
 nnoremap <space> <nop>
-" <leader>+e for fzf
-nnoremap <leader>F :Files<CR>
-" <leader>+f for vifm
-nnoremap <leader>V :Vifm ./<CR>
+" <leader>+fzf for fzf
+nnoremap <leader>fzf :Files<CR>
+" <leader>+fm for vifm
+nnoremap <leader>fm :Vifm ./<CR>
+" <leader>+bf for vifm
+nnoremap <leader>bf :Buffers<CR>
 " <leader>+cd to cd to current buffer
-nnoremap <Leader>cd :cd %:h<CR>
+nnoremap <Leader>cd :cd %:h <Bar> pwd<CR>
 
 " " Enable spell only for markdown via autocommand (move from global)
 " augroup my_spell
