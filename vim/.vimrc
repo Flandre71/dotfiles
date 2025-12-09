@@ -30,8 +30,8 @@ Plug 'github/copilot.vim' "AI support
 Plug 'tpope/vim-commentary' "comment codes
 Plug 'wellle/targets.vim' "add more text objects
 Plug 'tpope/vim-surround' "text-surrounding support
-Plug 'vim-airline/vim-airline' "for status line
-Plug 'vim-airline/vim-airline-themes' "for airline themes
+" Plug 'vim-airline/vim-airline' "for status line
+" Plug 'vim-airline/vim-airline-themes' "for airline themes
 Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
 "Plug 'skywind3000/vim-quickui' "for quick gui assisstance
 " Plug 'dense-analysis/ale' "for syntax checking (not sure how to use, archived currently)
@@ -44,9 +44,13 @@ call plug#end()
 
 set cursorline
 " Change background color to a dark gray in terminals
-highlight CursorLine ctermbg=darkgray
+highlight CursorLine cterm=NONE ctermbg=darkgray
 " Change current line number color to red
-highlight CursorLineNr ctermbg=darkgray ctermfg=blue
+highlight CursorLineNr cterm=NONE ctermbg=darkgray ctermfg=blue
+" vsplit border color config
+highlight VertSplit ctermfg=darkgray ctermbg=gray
+highlight StatusLine ctermfg=darkgray ctermbg=gray
+highlight StatusLineNC ctermfg=darkgray ctermbg=gray
 
 syntax enable
 filetype on             " enable filetype detection
