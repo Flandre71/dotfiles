@@ -30,13 +30,14 @@ Plug 'github/copilot.vim' "AI support
 Plug 'tpope/vim-commentary' "comment codes
 Plug 'wellle/targets.vim' "add more text objects
 Plug 'tpope/vim-surround' "text-surrounding support
-" Plug 'vim-airline/vim-airline' "for status line
-" Plug 'vim-airline/vim-airline-themes' "for airline themes
-Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
-"Plug 'skywind3000/vim-quickui' "for quick gui assisstance
+Plug 'vim-airline/vim-airline' "for status line
+Plug 'vim-airline/vim-airline-themes' "for airline themes
+Plug 'Yggdroot/indentLine' "indent line support
+" Plug 'skywind3000/vim-quickui' "for quick gui assisstance
 " Plug 'dense-analysis/ale' "for syntax checking (not sure how to use, archived currently)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} "custom popup menu with snippet support
 " for Markdown
+Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
 " for LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }" for latex support
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (currently not using)
