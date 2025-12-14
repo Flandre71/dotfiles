@@ -1,1 +1,3 @@
 let g:indentLine_setConceal = 0 "keep my own conceal setting, otherwise indentline plugin will override
+set conceallevel=2
+" set concealcursor=nc

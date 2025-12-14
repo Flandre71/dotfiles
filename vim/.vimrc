@@ -32,7 +32,7 @@ Plug 'wellle/targets.vim' "add more text objects
 Plug 'tpope/vim-surround' "text-surrounding support
 Plug 'vim-airline/vim-airline' "for status line
 Plug 'vim-airline/vim-airline-themes' "for airline themes
-Plug 'Yggdroot/indentLine' "indent line support
+" Plug 'Yggdroot/indentLine' "indent line support
 " Plug 'skywind3000/vim-quickui' "for quick gui assisstance
 " Plug 'dense-analysis/ale' "for syntax checking (not sure how to use, archived currently)
 " Plug 'neoclide/coc.nvim', {'branch': 'release'} "custom popup menu with snippet support
@@ -44,10 +44,12 @@ Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (curr
 call plug#end()
 
 set cursorline
+" Set line-number color
+highlight LineNr ctermfg=grey
+" Change current line number color to red
+highlight CursorLineNr cterm=NONE ctermbg=darkgray ctermfg=lightgrey
 " Change background color to a dark gray in terminals
 highlight CursorLine cterm=NONE ctermbg=darkgray
-" Change current line number color to red
-highlight CursorLineNr cterm=NONE ctermbg=darkgray ctermfg=blue
 " vsplit border color config
 highlight VertSplit ctermfg=darkgray ctermbg=gray
 highlight StatusLine ctermfg=darkgray ctermbg=gray
