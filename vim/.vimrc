@@ -4,6 +4,7 @@ set clipboard=unnamed
 set encoding=utf-8
 set number
 set relativenumber
+set scrolloff=4
 
 " Sane backspace behavior
 set backspace=indent,eol,start
@@ -35,12 +36,17 @@ Plug 'vim-airline/vim-airline-themes' "for airline themes
 " Plug 'Yggdroot/indentLine' "indent line support
 " Plug 'skywind3000/vim-quickui' "for quick gui assisstance
 " Plug 'dense-analysis/ale' "for syntax checking (not sure how to use, archived currently)
-" Plug 'neoclide/coc.nvim', {'branch': 'release'} "custom popup menu with snippet support
+Plug 'neoclide/coc.nvim', {'branch': 'release'} "custom popup menu with snippet support
+
 " for Markdown
 Plug 'preservim/vim-markdown', { 'for': 'markdown' } "richer markdown support
+
 " for LaTeX
 Plug 'lervag/vimtex', { 'for': 'tex' }" for latex support
 Plug 'KeitaNakamura/tex-conceal.vim', { 'for': 'tex' } "for tex concealing (currently not using)
+
+" for RenPy
+Plug 'chaimleib/vim-renpy', { 'for': 'rpy' }
 call plug#end()
 
 set cursorline
@@ -75,7 +81,7 @@ nnoremap <Leader>cd :cd %:h <Bar> pwd<CR>
 " " Enable spell only for markdown via autocommand (move from global)
 " augroup my_spell
 "   autocmd!
-"   autocmd FileType markdown setlocal spell spelllang=en_us
+"   autocmd FileType tex setlocal spell spelllang=en_us
 " augroup END
 " " Map: keep it simple
 " inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u

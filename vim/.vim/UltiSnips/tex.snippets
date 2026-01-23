@@ -9,7 +9,55 @@ def env(name):
 	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
 	return x != '0' and y != '0'
 
+greek_map = {
+    'a': 'alpha',
+    'b': 'beta',
+    'g': 'gamma',
+    'd': 'delta',
+    'D': 'Delta',
+    'e': 'epsilon',
+    've': 'varepsilon',
+    'z': 'zeta',
+    'et': 'eta',
+    'th': 'theta',
+    'Th': 'Theta',
+    'k': 'kappa',
+    'l': 'lambda',
+    'L': 'Lambda',
+    'm': 'mu',
+    'n': 'nu',
+    'x': 'xi',
+    'X': 'Xi',
+    'pi': 'pi',
+    'Pi': 'Pi',
+    'r': 'rho',
+    'vr': 'varrho',
+    's': 'sigma',
+    'S': 'Sigma',
+    'tu': 'tau',
+    'u': 'upsilon',
+    'f': 'phi',
+    'vf': 'varphi',
+    'F': 'Phi',
+    'c': 'chi',
+    'ps': 'psi',
+    'Ps': 'Psi',
+    'o': 'omega',
+    'O': 'Omega',
+    'i': 'iota'
+}
 endglobal
+
+context "math()"
+snippet "@([a-zA-Z]+)" "Auto Greek" rA
+`!p
+key = match.group(1)
+if key in greek_map:
+    snip.rv = "\\" + greek_map[key]
+else:
+    snip.rv = "@" + key 
+`
+endsnippet
 
 snippet solution "article template" b
 \documentclass{article}
@@ -19,6 +67,7 @@ snippet solution "article template" b
 
 \usepackage{amsmath, amssymb}
 \usepackage{amsthm}
+\usepackage{enumitem}
 \newtheoremstyle{breakstyle}
 	{5pt}
 	{10pt}
@@ -60,7 +109,7 @@ endsnippet
 
 priority 100
 snippet ... "ldots" iA
-\ldots
+\ldots 
 endsnippet
 
 snippet table "Table environment" b
@@ -83,13 +132,58 @@ snippet fig "Figure environment" b
 \end{figure}
 endsnippet
 
+# to clear the indent and start a newline with gap cleared
+snippet leave "leavevmode" bA
+\leavevmode \vspace{-\baselineskip}
+
+endsnippet
+
+context "math()"
+snippet st "s.t." i
+\mathrm{s.t.}\ 
+endsnippet
+
+context "math()"
+snippet inf "infimum" wA
+\mathrm{inf}
+endsnippet
+
+context "math()"
+snippet sup "supremum" wA
+\mathrm{sup}
+endsnippet
+
+# context "math()"
+# snippet Max "maximum" wA
+# \mathrm{max}_{$1}\\{$2\\}$0 
+# endsnippet
+
+context "math()"
+snippet max "maximum" wA
+\max\\{$1\\}$0 
+endsnippet
+
+# context "math()"
+# snippet Min "minimum" wA
+# \mathrm{max}_{$1}\\{$2\\}$0 
+# endsnippet
+
+context "math()"
+snippet min "minimum" wA
+\min\\{$1\\}$0 
+endsnippet
+
 snippet enum "Enumerate" bA
-\begin{enumerate}
+\begin{enumerate}[label=({${1:\roman*}})]
 	\item $0
 \end{enumerate}
 endsnippet
 
-snippet item "Itemize" bA
+snippet itm "Item" bA
+\item $0
+endsnippet
+
+snippet blt "Bullet list" bA
 \begin{itemize}
 	\item $0
 \end{itemize}
@@ -146,15 +240,15 @@ endsnippet
 snippet dm "Display Math" wA
 $$
 ${1:${VISUAL}}
-.$$ $0
+$$
+$0
 endsnippet
 
 snippet ali "Align" bA
 \begin{align*}
 	${1:${VISUAL}}
-.\end{align*}
+\end{align*}
 endsnippet
-
 
 context "math()"
 snippet // "Fraction" iA
@@ -229,10 +323,12 @@ snip.rv = subprocess.check_output(['wolframscript', '-code', code])
 `
 endsnippet
 
+context "math()"
 snippet == "equals" iA
 &= $1 \\\\
 endsnippet
 
+context "math()"
 snippet != "equals" iA
 \neq 
 endsnippet
@@ -247,10 +343,12 @@ snippet floor "floor" iA
 \left\lfloor $1 \right\rfloor$0
 endsnippet
 
+context "math()"
 snippet pmat "pmat" iA
 \begin{pmatrix} $1 \end{pmatrix} $0
 endsnippet
 
+context "math()"
 snippet bmat "bmat" iA
 \begin{bmatrix} $1 \end{bmatrix} $0
 endsnippet
@@ -260,6 +358,7 @@ snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
@@ -268,7 +367,8 @@ endsnippet
 # \left( ${1:${VISUAL}} \right) $0
 # endsnippet
 
-snippet lr| "left| right|" i
+context "math()"
+snippet lr| "left| right|" iA
 \left| ${1:${VISUAL}} \right| $0
 endsnippet
 
@@ -276,7 +376,8 @@ endsnippet
 # \left\\{ ${1:${VISUAL}} \right\\} $0
 # endsnippet
 
-snippet lrc "left\{ right\}" i
+context "math()"
+snippet lrc "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
@@ -284,12 +385,14 @@ endsnippet
 # \left[ ${1:${VISUAL}} \right] $0
 # endsnippet
 
-snippet lrb "left[ right]" i
+context "math()"
+snippet lrb "left[ right]" iA
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
+context "math()"
 snippet lra "leftangle rightangle" iA
-\left<${1:${VISUAL}} \right>$0
+\left<${1:${VISUAL}} \right> $0
 endsnippet
 
 context "math()"
@@ -297,26 +400,32 @@ snippet conj "conjugate" iA
 \overline{$1}$0
 endsnippet
 
+context "math()"
 snippet sum "sum" w
 \sum_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
+context "math()"
 snippet taylor "taylor" w
 \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
+context "math()"
 snippet lim "limit" w
 \lim_{${1:n} \to ${2:\infty}} 
 endsnippet
 
+context "math()"
 snippet limsup "limsup" w
 \limsup_{${1:n} \to ${2:\infty}} 
 endsnippet
 
+context "math()"
 snippet prod "product" w
 \prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
+context "math()"
 snippet part "d/dx" w
 \frac{\partial ${1:f}}{\partial ${2:x}} $0
 endsnippet
@@ -342,26 +451,31 @@ snippet ^ "to the ... power" iA
 endsnippet
 
 context "math()"
-snippet rd "to the ... power" iA
+snippet pw "to the ... power" iA
 ^{($1)}$0
 endsnippet
 
+context "math()"
 snippet _ "subscript" iA
 _{$1}$0
 endsnippet
 
+context "math()"
 snippet ooo "\infty" iA
 \infty
 endsnippet
 
+context "math()"
 snippet rij "mrij" i
 \\{${1:x}_${2:n}\\}_{${3:$2}\\in${4:\mathbb{N}}}$0
 endsnippet
 
+context "math()"
 snippet <= "leq" iA
 \le 
 endsnippet
 
+context "math()"
 snippet >= "geq" iA
 \ge 
 endsnippet
@@ -454,8 +568,26 @@ snippet mbb "mathbb" iA
 endsnippet
 
 context "math()"
+snippet mfr "mathfrak" iA
+\mathfrak{$1}$0
+endsnippet
+
+snippet tbf "textbf" iA
+\textbf{$1}$0
+endsnippet
+
+snippet emp "emph" wA
+\emph{$1}$0
+endsnippet
+
+context "math()"
 snippet mscr "mathscr" iA
 \mathscr{$1}$0
+endsnippet
+
+context "math()"
+snippet txt "text" iA
+\text{$1}$0
 endsnippet
 
 context "math()"
@@ -477,10 +609,40 @@ snippet xx "cross" iA
 \times 
 endsnippet
 
+context "math()"
+snippet cc "circ" iA
+\circ 
+endsnippet
+
+context "math()"
+snippet ot "direct product" iA
+\otimes 
+endsnippet
+
+context "math()"
+snippet Ot "direct product" iA
+\bigotimes
+endsnippet
+
+context "math()"
+snippet op "direct sum" iA
+\oplus
+endsnippet
+
+context "math()"
+snippet Op "direct sum" iA
+\bigoplus
+endsnippet
+
 priority 100
 snippet ** "cdot" iA
 \cdot 
 endsnippet
+
+# context "math()"
+# snippet , "," iA
+# ,\ 
+# endsnippet
 
 context "math()"
 snippet norm "norm" iA
@@ -506,16 +668,38 @@ snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|int)' "ln" rwA
 endsnippet
 
 
+context "math()"
+snippet +- "positive or negative" i
+\pm 
+endsnippet
+
+context "math()"
+snippet -+ "negative or positive" i
+\mp 
+endsnippet
+
 # priority 100
 context "math()"
-snippet -> "rightarrow" i
+snippet .-> "rightarrow" i
 \rightarrow 
 endsnippet
 
 # priority 100
 context "math()"
-snippet <- "rightarrow" i
-\rightarrow 
+snippet --> "longrightarrow" i
+\longrightarrow 
+endsnippet
+
+# priority 100
+context "math()"
+snippet <-. "leftarrow" i
+\leftarrow 
+endsnippet
+
+# priority 100
+context "math()"
+snippet <-- "longleftarrow" i
+\longleftarrow 
 endsnippet
 
 # priority 200
@@ -525,12 +709,22 @@ snippet <-> "leftrightarrow" i
 endsnippet
 
 context "math()"
+snippet <--> "longleftrightarrow" i
+\longleftrightarrow
+endsnippet
+
+context "math()"
 snippet |> "mapsto" iA
 \mapsto 
 endsnippet
 
 context "math()"
-snippet -- "inverse" iA
+snippet |-> "longmapsto" iA
+\longmapsto 
+endsnippet
+
+context "math()"
+snippet -- "inverse" i
 ^{-1}
 endsnippet
 
@@ -553,7 +747,7 @@ endsnippet
 # endsnippet
 
 
-snippet ~~ "~" iA
+snippet ~~ "~" ia
 \sim 
 endsnippet
 
@@ -562,14 +756,19 @@ snippet set "set" wA
 \\{$1\\} $0
 endsnippet
 
+context "math()"
+snippet \\ "backslash" i
+\backslash 
+endsnippet
+
 snippet || "mid" iA
- \mid 
+\mid 
 endsnippet
 
 
 context "math()"
 snippet sbs "subset" Ai
-\subseteq
+\subseteq 
 endsnippet
 
 context "math()"
@@ -577,12 +776,13 @@ snippet sps "supset" Ai
 \supseteq 
 endsnippet
 
+context "math()"
 snippet nin "not in " iA
 \not\in 
 endsnippet
 
 context "math()"
-snippet inn "in " iA
+snippet iin "in" iA
 \in 
 endsnippet
 
@@ -590,42 +790,58 @@ endsnippet
 # \N
 # endsnippet
 # 
+
+context "math()"
 snippet NN "bigcap" iA
 \bigcap_{${1:k} \in ${2: S}} $0
 endsnippet
 
-snippet nn "cap" i
+context "math()"
+snippet nn "cap" iA
 \cap 
 endsnippet
 
+context "math()"
 snippet uu "cup" iA
 \cup 
 endsnippet
 
+context "math()"
 snippet UU "bigcup" iA
 \bigcup_{${1:k} \in ${2: S}} $0
 endsnippet
 
+context "math()"
 snippet ept "emptyset" iA
 \emptyset
 endsnippet
 
+context "math()"
 snippet RR "real" iA
 \mathbb{R}
 endsnippet
 
+context "math()"
 snippet QQ "Q" iA
 \mathbb{Q}
 endsnippet
 
+context "math()"
+snippet CC "C" iA
+\mathbb{C}
+endsnippet
+
+context "math()"
 snippet ZZ "Z" iA
 \mathbb{Z}
 endsnippet
 
+context "math()"
 snippet <! "normal" iA
 \triangleleft 
 endsnippet
 
+context "math()"
 snippet !> "normal" iA
 \triangleright 
 endsnippet
@@ -660,7 +876,7 @@ snippet bfunc "Big function" iA
 \begin{align*}
 	$1: $2 &\longrightarrow $3 \\\\
 	$4 &\longmapsto $1($4) = $5
-.\end{align*}
+\end{align*}
 $0
 endsnippet
 
@@ -670,7 +886,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "bar" "bar" riA
+snippet bar "bar" iA
 \overline{$1}$0
 endsnippet
 
@@ -682,7 +898,7 @@ endsnippet
 
 priority 10
 context "math()"
-snippet "under" "underline" riA
+snippet under "underline" iA
 \underline{$1}$0
 endsnippet
 
@@ -703,13 +919,3 @@ context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
-
-# snippet HH "H" iA
-# \mathbb{H}
-# endsnippet
-# 
-# snippet DD "D" iA
-# \mathbb{D}
-# endsnippet
-# 
-# vim:ft=snippets
