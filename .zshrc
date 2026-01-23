@@ -1,3 +1,11 @@
+##############
+# My Configs #
+##############
+alias lg='lazygit'
+alias vimf='file=$(fzf --exit-0); [ -n "$file" ] && vim "$file"'
+# alias VF='file=$(fzf --exit-0); [ -n "$file" ] && vim "$file"'
+alias fm='vifm .'
+
 # for vim
 export PATH="/opt/homebrew/bin:$PATH"
 
