@@ -69,14 +69,14 @@ snippet solution "article template" b
 \usepackage{amsthm}
 \usepackage{enumitem}
 \newtheoremstyle{breakstyle}
-    {5pt}
-    {10pt}
-    {\normalfont}
-    {0pt}
-    {\bfseries}
-    {\newline\indent}
-    {0pt}
-    {}
+	{5pt}
+	{10pt}
+	{\normalfont}
+	{0pt}
+	{\bfseries}
+	{}
+	{\newline}
+	{}
 \theoremstyle{breakstyle}
 \newtheorem{${1:exercise}}{${2:`!p snip.rv = (t[1] or '').title()`}}[section]
 \title{$3}
@@ -107,7 +107,8 @@ snippet nsec "section*" bA
 $0
 endsnippet
 
-snippet .. "ldots" iA
+priority 100
+snippet ... "ldots" iA
 \ldots 
 endsnippet
 
@@ -139,18 +140,18 @@ endsnippet
 
 context "math()"
 snippet st "s.t." i
-\text{s.t. }$0
+\mathrm{s.t.}\ 
 endsnippet
 
-# context "math()"
-# snippet inf "infimum" wA
-# \mathrm{inf}
-# endsnippet
+context "math()"
+snippet inf "infimum" wA
+\mathrm{inf}
+endsnippet
 
-# context "math()"
-# snippet sup "supremum" wA
-# \mathrm{sup}
-# endsnippet
+context "math()"
+snippet sup "supremum" wA
+\mathrm{sup}
+endsnippet
 
 # context "math()"
 # snippet Max "maximum" wA
@@ -263,6 +264,7 @@ snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "symbol frac" wrA
 \\frac{`!p snip.rv = match.group(1)`}{$1}$0
 endsnippet
 
+priority 1000
 context "math()"
 snippet '^.*\)/' "() frac" wrA
 `!p
@@ -306,10 +308,12 @@ endsnippet
 # endsnippet
 
 # convert mathematica block
+priority 1000
 snippet math "mathematicablock" w
 math $1 math$0
 endsnippet
 
+priority 10000
 snippet 'math(.*)math' "math" wr
 `!p
 import subprocess
@@ -630,6 +634,7 @@ snippet Op "direct sum" iA
 \bigoplus
 endsnippet
 
+priority 100
 snippet ** "cdot" iA
 \cdot 
 endsnippet
@@ -644,16 +649,19 @@ snippet norm "norm" iA
 \|$1\|$0
 endsnippet
 
+priority 100
 context "math()"
 snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
 \\`!p snip.rv = match.group(1)` 
 endsnippet
 
+priority 300
 context "math()"
 snippet dint "integral" wA
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
+priority 200
 context "math()"
 snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|int)' "ln" rwA
 \\`!p snip.rv = match.group(1)` 
@@ -768,15 +776,13 @@ snippet sps "supset" Ai
 \supseteq 
 endsnippet
 
-priority 2
 context "math()"
 snippet nin "not in " iA
 \not\in 
 endsnippet
 
-priority 1
 context "math()"
-snippet in "in" i
+snippet iin "in" iA
 \in 
 endsnippet
 
@@ -878,31 +884,37 @@ snippet cvec "column vector" iA
 \begin{pmatrix} ${1:x}_${2:1}\\\\ \vdots\\\\ $1_${2:n} \end{pmatrix}
 endsnippet
 
+priority 10
 context "math()"
 snippet bar "bar" iA
 \overline{$1}$0
 endsnippet
 
+priority 100
 context "math()"
 snippet "([a-zA-Z])bar" "bar" riA
 \overline{`!p snip.rv=match.group(1)`}
 endsnippet
 
+priority 10
 context "math()"
 snippet under "underline" iA
 \underline{$1}$0
 endsnippet
 
+priority 100
 context "math()"
 snippet "([a-zA-Z])under" "underline" riA
 \underline{`!p snip.rv=match.group(1)`}
 endsnippet
 
+priority 10
 context "math()"
 snippet "hat" "hat" riA
 \hat{$1}$0
 endsnippet
 
+priority 100
 context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
