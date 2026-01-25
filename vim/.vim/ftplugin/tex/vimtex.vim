@@ -13,3 +13,8 @@ augroup LatexAutoSave
 " save after cursor holds longer than updatetime or loose focus
     autocmd CursorHold,FocusLost,InsertLeave *.tex silent! update
 augroup END
+" set indent to 4 spaces
+setlocal expandtab
+setlocal shiftwidth=4
+setlocal tabstop=4
+setlocal softtabstop=4
