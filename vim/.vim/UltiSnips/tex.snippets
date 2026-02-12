@@ -15,7 +15,7 @@ greek_map = {
     'g': 'gamma',
     'd': 'delta',
     'D': 'Delta',
-    'e': 'epsilon',
+    'ep': 'epsilon',
     've': 'varepsilon',
     'z': 'zeta',
     'et': 'eta',
@@ -107,7 +107,11 @@ snippet nsec "section*" bA
 $0
 endsnippet
 
-snippet .. "ldots" iA
+snippet qed "qed" bA
+\qed$0
+endsnippet
+
+snippet ... "ldots" iA
 \ldots 
 endsnippet
 
@@ -138,8 +142,13 @@ snippet leave "leavevmode" bA
 endsnippet
 
 context "math()"
-snippet st "s.t." i
+snippet st "such that" i
 \text{s.t. }$0
+endsnippet
+
+context "math()"
+snippet ie "i.e." i
+\text{i.e. }$0
 endsnippet
 
 # context "math()"
@@ -157,20 +166,20 @@ endsnippet
 # \mathrm{max}_{$1}\\{$2\\}$0 
 # endsnippet
 
-context "math()"
-snippet max "maximum" wA
-\max\\{$1\\}$0 
-endsnippet
-
 # context "math()"
-# snippet Min "minimum" wA
-# \mathrm{max}_{$1}\\{$2\\}$0 
+# snippet max "maximum" wA
+# \max\\{$1\\}$0 
 # endsnippet
 
-context "math()"
-snippet min "minimum" wA
-\min\\{$1\\}$0 
-endsnippet
+# # context "math()"
+# # snippet Min "minimum" wA
+# # \mathrm{max}_{$1}\\{$2\\}$0 
+# # endsnippet
+
+# context "math()"
+# snippet min "minimum" wA
+# \min\\{$1\\}$0 
+# endsnippet
 
 snippet enum "Enumerate" bA
 \begin{enumerate}[label=({${1:\roman*}})]
@@ -241,6 +250,11 @@ $$
 ${1:${VISUAL}}
 $$
 $0
+endsnippet
+
+context "math()"
+snippet no "Equation Numbering" w
+\eqno{($1)}$0
 endsnippet
 
 snippet ali "Align" bA
@@ -402,6 +416,11 @@ snippet sum "sum" w
 endsnippet
 
 context "math()"
+snippet comb "combinations" wA
+\mathrm{C}_\{${1:n}\}^\{${2:k}\}$0
+endsnippet
+
+context "math()"
 snippet taylor "taylor" w
 \sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
@@ -467,13 +486,18 @@ snippet rij "mrij" i
 endsnippet
 
 context "math()"
+snippet ~= "cong" iA
+\cong $0
+endsnippet
+
+context "math()"
 snippet <= "leq" iA
-\le 
+\le $0
 endsnippet
 
 context "math()"
 snippet >= "geq" iA
-\ge 
+\ge $0
 endsnippet
 
 context "math()"
@@ -554,7 +578,7 @@ endsnippet
 # endsnippet
 # 
 context "math()"
-snippet mcal "mathcal" iA
+snippet mca "mathcal" iA
 \mathcal{$1}$0
 endsnippet
 
@@ -577,7 +601,7 @@ snippet emp "emph" wA
 endsnippet
 
 context "math()"
-snippet mscr "mathscr" iA
+snippet msc "mathscr" iA
 \mathscr{$1}$0
 endsnippet
 
@@ -612,22 +636,22 @@ endsnippet
 
 context "math()"
 snippet ot "direct product" iA
-\otimes 
+\otimes $0
 endsnippet
 
 context "math()"
 snippet Ot "direct product" iA
-\bigotimes
+\bigotimes $0
 endsnippet
 
 context "math()"
 snippet op "direct sum" iA
-\oplus
+\oplus $0
 endsnippet
 
 context "math()"
 snippet Op "direct sum" iA
-\bigoplus
+\bigoplus $0
 endsnippet
 
 snippet ** "cdot" iA
@@ -672,36 +696,46 @@ endsnippet
 
 # priority 100
 context "math()"
-snippet .-> "rightarrow" i
+snippet ..> "rightarrow" iA
 \rightarrow 
 endsnippet
 
 # priority 100
 context "math()"
-snippet --> "longrightarrow" i
+snippet --> "longrightarrow" iA
 \longrightarrow 
+endsnippet
+
+context "math()"
+snippet X-> "longrightarrow" iA
+\xrightarrow[$2]{$1} $0
 endsnippet
 
 # priority 100
 context "math()"
-snippet <-. "leftarrow" i
+snippet <.. "leftarrow" iA
 \leftarrow 
 endsnippet
 
 # priority 100
 context "math()"
-snippet <-- "longleftarrow" i
+snippet <-- "longleftarrow" iA
 \longleftarrow 
+endsnippet
+
+context "math()"
+snippet <-X "longleftarrow" iA
+\xleftarrow[$2]{$1} $0
 endsnippet
 
 # priority 200
 context "math()"
-snippet <-> "leftrightarrow" i
+snippet <.> "leftrightarrow" iA
 \leftrightarrow
 endsnippet
 
 context "math()"
-snippet <--> "longleftrightarrow" i
+snippet <-> "longleftrightarrow" iA
 \longleftrightarrow
 endsnippet
 
@@ -749,7 +783,7 @@ snippet set "set" wA
 endsnippet
 
 context "math()"
-snippet \\ "backslash" i
+snippet \ "backslash" i
 \backslash 
 endsnippet
 
@@ -792,17 +826,37 @@ endsnippet
 
 context "math()"
 snippet nn "cap" iA
-\cap 
+\cap $0
 endsnippet
 
 context "math()"
 snippet uu "cup" iA
-\cup 
+\cup $0
 endsnippet
 
 context "math()"
 snippet UU "bigcup" iA
-\bigcup_{${1:k} \in ${2: S}} $0
+\bigcup_{${1:\mathfrak{a}} \in ${2: A}} $0
+endsnippet
+
+context "math()"
+snippet mm "meet" iA
+\wedge $0
+endsnippet
+
+context "math()"
+snippet MM "big meet" iA
+\bigwedge_{${1:\mathfrak{a}} \in ${2: A}} $0
+endsnippet
+
+context "math()"
+snippet jj "join" iA
+\vee $0
+endsnippet
+
+context "math()"
+snippet JJ "big join" iA
+\bigvee_{${1:\mathfrak{a}} \in ${2: A}} $0
 endsnippet
 
 context "math()"
@@ -883,27 +937,37 @@ snippet bar "bar" iA
 \overline{$1}$0
 endsnippet
 
-context "math()"
-snippet "([a-zA-Z])bar" "bar" riA
-\overline{`!p snip.rv=match.group(1)`}
-endsnippet
+# context "math()"
+# snippet "([a-zA-Z])bar" "bar" riA
+# \overline{`!p snip.rv=match.group(1)`}
+# endsnippet
 
 context "math()"
 snippet under "underline" iA
 \underline{$1}$0
 endsnippet
 
-context "math()"
-snippet "([a-zA-Z])under" "underline" riA
-\underline{`!p snip.rv=match.group(1)`}
-endsnippet
+# context "math()"
+# snippet "([a-zA-Z])under" "underline" riA
+# \underline{`!p snip.rv=match.group(1)`}
+# endsnippet
 
 context "math()"
 snippet "hat" "hat" riA
 \hat{$1}$0
 endsnippet
 
+# context "math()"
+# snippet "([a-zA-Z])hat" "hat" riA
+# \hat{`!p snip.rv=match.group(1)`}
+# endsnippet
+
 context "math()"
-snippet "([a-zA-Z])hat" "hat" riA
-\hat{`!p snip.rv=match.group(1)`}
+snippet "til" "tilde" riA
+\tilde{$1}$0
 endsnippet
+
+# context "math()"
+# snippet "([a-zA-Z])til" "tilde" riA
+# \tilde{`!p snip.rv=match.group(1)`}
+# endsnippet
