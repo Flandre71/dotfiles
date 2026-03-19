@@ -138,7 +138,6 @@ endsnippet
 # to clear the indent and start a newline with gap cleared
 snippet leave "leavevmode" bA
 \leavevmode \vspace{-\baselineskip}
-
 endsnippet
 
 context "math()"
@@ -208,41 +207,45 @@ snippet pac "Package" b
 endsnippet
 
 snippet >>> "implies" Ai
-\implies
+\implies 
 endsnippet
 
 snippet <<< "implied by" Ai
-\impliedby
+\impliedby 
 endsnippet
 
 snippet <<>> "be equivalent to" Ai
-\iff
+\iff 
 endsnippet
 
 snippet >> "(long) implies" i
-\Rightarrow
+\Rightarrow 
 endsnippet
 
 snippet << "(long) implied by" i
-\Leftarrow
+\Leftarrow 
 endsnippet
 
 snippet <> "(long) be equivalent to" i
-\Leftrightarrow
+\Leftrightarrow 
 endsnippet
 
 context "math()"
 snippet iff "iff" Ai
-\iff
+\iff 
 endsnippet
 
+# snippet mk "Inline Math" wA
+# $${1}$`!p
+# if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+# 	snip.rv = ' '
+# else:
+# 	snip.rv = ''
+# `$2
+# endsnippet
+
 snippet mk "Inline Math" wA
-$${1}$`!p
-if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
-	snip.rv = ' '
-else:
-	snip.rv = ''
-`$2
+$$1$$0
 endsnippet
 
 snippet dm "Display Math" wA
@@ -668,10 +671,10 @@ snippet norm "norm" iA
 \|$1\|$0
 endsnippet
 
-context "math()"
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
-\\`!p snip.rv = match.group(1)` 
-endsnippet
+# context "math()"
+# snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rw
+# \\`!p snip.rv = match.group(1)` 
+# endsnippet
 
 context "math()"
 snippet dint "integral" wA
@@ -750,7 +753,7 @@ snippet |-> "longmapsto" iA
 endsnippet
 
 context "math()"
-snippet -- "inverse" i
+snippet - "inverse" i
 ^{-1}
 endsnippet
 
@@ -791,15 +794,28 @@ snippet || "mid" iA
 \mid 
 endsnippet
 
-
+priority 1
 context "math()"
 snippet sbs "subset" Ai
 \subseteq 
 endsnippet
 
+priority 2
+context "math()"
+snippet nsbs "subsetneq" Ai
+\subsetneq 
+endsnippet
+
+priority 1
 context "math()"
 snippet sps "supset" Ai
 \supseteq 
+endsnippet
+
+priority 2
+context "math()"
+snippet nsps "supsetneq" Ai
+\supsetneq 
 endsnippet
 
 priority 2
