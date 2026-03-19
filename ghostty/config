@@ -1,8 +1,8 @@
 font-family = Iosevka Fixed
 font-size = 18
 background-opacity = 0.7
-window-width = 161
-window-height = 37
+window-width = 144
+window-height = 40
 background-blur = 10
 split-divider-color = #a6a6a6
 #bold-color = bright
