@@ -27,7 +27,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " fuzzy find
 Plug 'junegunn/fzf.vim'
 Plug 'vifm/vifm.vim' "vifm support for file management
 Plug 'jiangmiao/auto-pairs' "autp pairing
-Plug 'github/copilot.vim' "AI support
+" Plug 'github/copilot.vim' "AI support
 Plug 'tpope/vim-commentary' "comment codes
 Plug 'wellle/targets.vim' "add more text objects
 Plug 'tpope/vim-surround' "text-surrounding support
