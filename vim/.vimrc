@@ -19,6 +19,7 @@ set hlsearch " Highlight all search terms
 "set wildmenu " Show command line options in a list
 "set wildmode=list:longest,full " Improved command completion behavior
 set wildoptions=pum
+set wildignorecase
 
 "Plugins
 call plug#begin('~/.vim/plugged')
