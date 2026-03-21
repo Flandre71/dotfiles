@@ -9,6 +9,8 @@ alias fm='vifm .'
 # for vim
 export PATH="/opt/homebrew/bin:$PATH"
 
+cat ~/Programs/RickAstley | lolcat
+
 #source fzf.zsh
 # alt+tab to accept auto-suggest in zsh
 #bindkey '^[\t' autosuggest-accept
