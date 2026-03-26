@@ -4,12 +4,13 @@ let s:fzf_cl_prefix = ''
 
 function! s:FzfCmdlineTab()
   if getcmdtype() !=# ':'
-    return "\<Tab>"
+    return "\<C-t>"
+
   endif
 
   let cmd = getcmdline()
   if cmd !~ '\s'
-    return "\<Tab>"
+    return "\<C-t>"
   endif
 
   let cmd_word = substitute(matchstr(cmd, '^\s*\zs\S\+'), '[!|].*', '', '')
@@ -18,7 +19,7 @@ function! s:FzfCmdlineTab()
     \ 'w','write','sav','saveas','lcd','cd','source']
 
   if index(file_cmds, cmd_word) < 0
-    return "\<Tab>"
+    return "\<C-t>"
   endif
 
   let s:fzf_cl_saved_cmd = cmd
