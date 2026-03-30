@@ -1,6 +1,18 @@
-" FZF command-line completion 
+" ── FZF command-line completion ───────────────────────────────────────────────
 let s:saved_cmd = ''
 let s:prefix    = ''
+
+" Find the end of cmd which match to the completion, return the prefix which don't need replacement
+function! s:GetPrefix(cmd, completions)
+  let first = a:completions[0]
+  for i in range(0, len(a:cmd))
+    let suffix = a:cmd[i :]
+    if stridx(first, suffix) == 0
+      return i == 0 ? '' : a:cmd[: i - 1]
+    endif
+  endfor
+  return a:cmd
+endfunction
 
 function! s:FzfCmdlineTab()
   if getcmdtype() !=# ':'
@@ -10,20 +22,12 @@ function! s:FzfCmdlineTab()
   let cmd = getcmdline()
   let completions = getcompletion(cmd, 'cmdline')
 
-  " back to original completion if no options
   if empty(completions)
     return "\<C-t>"
   endif
 
   let s:saved_cmd = cmd
-
-  " no space: complete the command itself with empty perfix
-  " with space: perfix reached to the last space, displace with the last part
-  if cmd !~# '\s'
-    let s:prefix = ''
-  else
-    let s:prefix = cmd[: strridx(cmd, ' ')]
-  endif
+  let s:prefix    = s:GetPrefix(cmd, completions)
 
   call timer_start(1, {-> s:RunFzf(completions)})
   return "\<C-c>"
@@ -52,3 +56,4 @@ function! s:Sink(lines)
 endfunction
 
 cnoremap <expr> <Tab> <SID>FzfCmdlineTab()
+" ─────────────────────────────────────────────────────────────────────────────
