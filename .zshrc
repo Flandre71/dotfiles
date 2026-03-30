@@ -5,6 +5,7 @@ alias lg='lazygit'
 alias vimf='file=$(fzf --exit-0); [ -n "$file" ] && vim "$file"'
 # alias VF='file=$(fzf --exit-0); [ -n "$file" ] && vim "$file"'
 alias fm='vifm .'
+alias math='cd ~/Programs/LaTeX\&Annotations'
 
 # for vim
 export PATH="/opt/homebrew/bin:$PATH"
