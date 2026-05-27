@@ -59,7 +59,7 @@ else:
 `
 endsnippet
 
-snippet solution "article template" b
+snippet solution "solution template" b
 \documentclass{article}
 \usepackage{geometry}
 \geometry{a4paper,scale=0.8}
@@ -90,6 +90,130 @@ $0
 
 \end{document}
 endsnippet
+
+#####################
+# LaTeX Environment #
+#####################
+
+# Document Template
+snippet note "lecture note template" b
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+\usepackage{enumitem}
+
+\newtheoremstyle{breakstyle}
+    {5pt}
+    {10pt}
+    {\normalfont}
+    {0pt}
+    {\bfseries}
+    {\newline\indent}
+    {0pt}
+    {\thmname{#1}\thmnumber{ #2}\thmnote{ \textbf{[#3]}}}
+\theoremstyle{breakstyle}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{definition}{Definition}[section]
+
+\title{$1}
+\author{$2}
+\date{$3}
+
+\begin{document}
+\maketitle
+
+$0
+
+\end{document}
+endsnippet
+
+# Exercise
+snippet ex "exercise" b
+\begin{exercise}
+	$0
+\end{exercise}
+endsnippet
+
+snippet exr "exercise [remark]" bA
+\begin{exercise}[$1]
+	$0
+\end{exercise}
+endsnippet
+
+# Theorem
+snippet thm "theorem" b
+\begin{theorem}
+	$0
+\end{theorem}
+endsnippet
+
+snippet thmr "theorem [remark]" bA
+\begin{theorem}[$1]
+	$0
+\end{theorem}
+endsnippet
+
+# Proposition
+snippet prop "proposition" b
+\begin{proposition}
+	$0
+\end{proposition}
+endsnippet
+
+snippet propr "proposition [remark]" bA
+\begin{proposition}[$1]
+	$0
+\end{proposition}
+endsnippet
+
+# Corollary
+snippet cor "corollary" b
+\begin{corollary}
+	$0
+\end{corollary}
+endsnippet
+
+snippet corr "corollary [remark]" bA
+\begin{corollary}[$1]
+	$0
+\end{corollary}
+endsnippet
+
+# Remark
+snippet rm "remark" b
+\begin{remark}
+	$0
+\end{remark}
+endsnippet
+
+snippet rmr "remark [note]" bA
+\begin{remark}[$1]
+	$0
+\end{remark}
+endsnippet
+
+# Definition
+snippet def "definition" b
+\begin{definition}
+	$0
+\end{definition}
+endsnippet
+
+snippet defr "definition [note]" bA
+\begin{definition}[$1]
+	$0
+\end{definition}
+endsnippet
+
+#####################
 
 snippet beg "begin{} / end{}" bA
 \\begin{$1}
@@ -181,7 +305,7 @@ endsnippet
 # endsnippet
 
 snippet enum "Enumerate" bA
-\begin{enumerate}[label=({${1:\roman*}})]
+\begin{enumerate}[label=({\\${1:roman}*})]
 	\item $0
 \end{enumerate}
 endsnippet
@@ -599,7 +723,7 @@ snippet tbf "textbf" iA
 \textbf{$1}$0
 endsnippet
 
-snippet emp "emph" wA
+snippet emph "emph" wA
 \emph{$1}$0
 endsnippet
 
@@ -758,6 +882,11 @@ snippet - "inverse" i
 endsnippet
 
 context "math()"
+snippet ++ "positive" iA
+^{+}
+endsnippet
+
+context "math()"
 snippet cpl "complement" iA
 ^{c}
 endsnippet
@@ -837,7 +966,7 @@ endsnippet
 
 context "math()"
 snippet NN "bigcap" iA
-\bigcap_{${1:k} \in ${2: S}} $0
+\bigcap${1: _{${2:k} \in ${3: S}}} $0
 endsnippet
 
 context "math()"
@@ -852,7 +981,7 @@ endsnippet
 
 context "math()"
 snippet UU "bigcup" iA
-\bigcup_{${1:\mathfrak{a}} \in ${2: A}} $0
+\bigcup${1: _{${2:k} \in ${3: S}}} $0
 endsnippet
 
 context "math()"

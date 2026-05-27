@@ -1,5 +1,5 @@
 "basic config
-set nocompatible
+" set nocompatible
 set clipboard=unnamed
 set encoding=utf-8
 set number
